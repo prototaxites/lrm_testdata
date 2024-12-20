@@ -1,4 +1,4 @@
-tolid: xyTesTing1
+id: xyTesTing1
 pacbio:
   fasta:
     - https://github.com/prototaxites/lrm_testdata/raw/refs/heads/main/subsampled.pacbio.part_001.fa.gz
