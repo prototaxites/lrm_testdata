@@ -1,4 +1,4 @@
-tolid: xyTesTing1
+id: xyTesTing1
 pacbio:
   fasta:
     - ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR131/014/SRR13128014/SRR13128014_subreads.fastq.gz
