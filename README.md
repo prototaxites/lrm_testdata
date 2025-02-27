@@ -48,8 +48,13 @@ simulate hi-c data
 
 ```
 cat D6331.refseq/genomes/*.fasta > all.fasta
-sim3C --dist uniform -n 250000 -l 150 -e DpnII -e HinfI -v -m hic all.fasta hic_1.fq.gz hic_2.fq.gz
-samtools import -1 hic_1.fq.gz -2 hic_2.fq.gz -o final_data/hic.cram
+sim3C --dist uniform -n 500000 -l 150 -e DpnII -e HinfI -v -m hic all.fasta hic_1.fq.gz hic_2.fq.gz
+bioawk -c fastx 'NR<=250000 {print "@"$name" "$comment"\n"$seq"\n+\n"$qual}' hic_1.fq.gz > hic_1h_1.fq
+bioawk -c fastx 'NR<=250000 {print "@"$name" "$comment"\n"$seq"\n+\n"$qual}' hic_2.fq.gz > hic_1h_2.fq
+bioawk -c fastx 'NR>250000 {print "@"$name" "$comment"\n"$seq"\n+\n"$qual}' hic_1.fq.gz > hic_2h_1.fq
+bioawk -c fastx 'NR>250000 {print "@"$name" "$comment"\n"$seq"\n+\n"$qual}' hic_2.fq.gz > hic_2h_2.fq
+samtools import -1 hic_1h_1.fq.gz -2 hic_1h_2.fq.gz -o final_data/hic1.cram
+samtools import -1 hic_2h_1.fq.gz -2 hic_2h_2.fq.gz -o final_data/hic2.cram
 ```
 
 ## assembly
